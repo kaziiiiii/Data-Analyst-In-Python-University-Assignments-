@@ -1,0 +1,62 @@
+--SELECT * FROM film 
+--SELECT Count(rental_rate) FROM film
+--SELECT DISTINCT(rental_rate) FROM film
+--SELECT Count (DISTINCT rental_rate) FROM film
+--SELECT * FROM film WHERE rental_rate > 4;
+--SELECT  DISTINCT (title) FROM film WHERE rental_rate > 4;
+--SELECT * FROM film WHERE rental_rate > 4 and replacement_cost > 21.99 and rating = 'R';
+--SELECT title FROM film WHERE rental_rate > 4 and replacement_cost > 21.99 and rating = 'R';
+--SELECT COUNT (*)  FROM film WHERE rental_rate > 4 and replacement_cost > 21.99 and rating = 'R'; 
+--SELECT COUNT (*)  FROM film WHERE rating = 'R' OR rating = 'PG-13';
+--SELECT  *  FROM film WHERE rating != 'R' 
+------------------------------------------------------------------------------------------------------
+--1)  WHat is the email for the customer with the name Nancy Thomas ? 
+--SElECT email FROM customer  WHERE first_name = 'Nancy' AND last_name = 'Thomas'
+------------------------------------------------------------------------------------------------------
+--2) Could you give them the description for the movie "Outlaw Hanky "? 
+--SELECT description FROM film WHERE title = 'Outlaw Hanky'
+-----------------------------------------------------------------------------------------------------
+--3) Can you get the phone number for the customer who lives at "259 Ipoh Drive " ? 
+--SELECT phone FROM address where address = '259 Ipoh Drive'
+--------------------------------------------------------------------------------------------------------
+------------------ ORDER BY 
+--SELECT * FROM customer ORDER BY first_name ASC;
+--SELECT * FROM customer ORDER BY store_id DESC, first_name ASC;
+--SELECT first_name, last_name FROM customer ORDER BY store_id DESC, first_name ASC;
+---------------------------------------------------------------------------------------------------------------
+-------- LIMIT 
+--SELECT * FROM payment WHERE amount != 0.00 ORDER BY payment_date DESC LIMIT 5;
+-----------------------------------------------------------------------------------------------------------------
+
+--4) What are the customer ids of the first 10 customers who created a payment ? 
+--SELECT Customer_id FROM payment ORDER BY payment_date ASC LIMIT 10 ;
+-----------------------------------------------------------------------------------------------------------------
+--5) What are the titles of the 5 shortest (in length of rutime ) movies ? 
+--SELECT title, length FROM  film ORDER BY length ASC LIMIT 5;
+
+--6) If the previous customer can watch any movie that is 50 minutes or less in run time, how many options does she have?  
+--SELECT COUNT(title) FROM  film WHERE length <= 50;
+
+-----------------------------------------BETWEEN 
+--SELECT * FROM payment WHERE payment_date BETWEEN '2007-02-01' AND '2007-02-15'
+
+------------------------------------------- IN 
+--- How many payment was in 0.99 , 1.98 , 1.99 
+--SELECT COUNT (*) FROM payment WHERE amount IN (0.99,1.98,1.99)
+
+--- How many payment was NOT in 0.99 , 1.98 , 1.99 
+--SELECT COUNT (*) FROM payment WHERE amount NOT IN (0.99,1.98,1.99)
+
+--SELECT * FROM customer WHERE first_name IN ('John', 'Jake', 'Julie')
+--SELECT * FROM customer WHERE first_name NOT IN ('John', 'Jake', 'Julie')
+
+--------------------------------- LIKE 
+-- Using the underscore allows us to replace just a single character 
+-- Get all mission impossible films 
+-- Where title LIKE 'Mission Impossible _'
+--- ILIKE is  case in  sensetive 
+--- LIKE is  case sensetive 
+--SELECT * FROM customer WHERE first_name LIKE 'J%' AND last_name LIKE 'S%'
+--SELECT * FROM customer WHERE first_name ILIKE 'j%' AND last_name ILIKE 's%'
+--SELECT * FROM customer WHERE first_name LIKE '%er%'  -- anyone who have er in their first name 
+--SELECT * FROM customer WHERE first_name LIKE '%er%' AND last_name NOT LIKE  'B%' ORDER BY last_name 
